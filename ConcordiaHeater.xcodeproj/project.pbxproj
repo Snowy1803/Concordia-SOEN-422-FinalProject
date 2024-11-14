@@ -1,0 +1,624 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FD0ED3F72CE6A1C500B54F1D /* ConcordiaHeaterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0ED3F62CE6A1C500B54F1D /* ConcordiaHeaterApp.swift */; };
+		FD0ED3F92CE6A1C500B54F1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0ED3F82CE6A1C500B54F1D /* ContentView.swift */; };
+		FD0ED3FB2CE6A1C800B54F1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD0ED3FA2CE6A1C800B54F1D /* Assets.xcassets */; };
+		FD0ED3FF2CE6A1C800B54F1D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD0ED3FE2CE6A1C800B54F1D /* Preview Assets.xcassets */; };
+		FD0ED4092CE6A1C800B54F1D /* ConcordiaHeaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0ED4082CE6A1C800B54F1D /* ConcordiaHeaterTests.swift */; };
+		FD0ED4132CE6A1C800B54F1D /* ConcordiaHeaterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0ED4122CE6A1C800B54F1D /* ConcordiaHeaterUITests.swift */; };
+		FD0ED4152CE6A1C800B54F1D /* ConcordiaHeaterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0ED4142CE6A1C800B54F1D /* ConcordiaHeaterUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FD0ED4052CE6A1C800B54F1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD0ED3EB2CE6A1C500B54F1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD0ED3F22CE6A1C500B54F1D;
+			remoteInfo = ConcordiaHeater;
+		};
+		FD0ED40F2CE6A1C800B54F1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD0ED3EB2CE6A1C500B54F1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD0ED3F22CE6A1C500B54F1D;
+			remoteInfo = ConcordiaHeater;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FD0ED3F32CE6A1C500B54F1D /* ConcordiaHeater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConcordiaHeater.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD0ED3F62CE6A1C500B54F1D /* ConcordiaHeaterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcordiaHeaterApp.swift; sourceTree = "<group>"; };
+		FD0ED3F82CE6A1C500B54F1D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FD0ED3FA2CE6A1C800B54F1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FD0ED3FC2CE6A1C800B54F1D /* ConcordiaHeater.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ConcordiaHeater.entitlements; sourceTree = "<group>"; };
+		FD0ED3FE2CE6A1C800B54F1D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FD0ED4042CE6A1C800B54F1D /* ConcordiaHeaterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcordiaHeaterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD0ED4082CE6A1C800B54F1D /* ConcordiaHeaterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcordiaHeaterTests.swift; sourceTree = "<group>"; };
+		FD0ED40E2CE6A1C800B54F1D /* ConcordiaHeaterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcordiaHeaterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD0ED4122CE6A1C800B54F1D /* ConcordiaHeaterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcordiaHeaterUITests.swift; sourceTree = "<group>"; };
+		FD0ED4142CE6A1C800B54F1D /* ConcordiaHeaterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcordiaHeaterUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FD0ED3F02CE6A1C500B54F1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD0ED4012CE6A1C800B54F1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD0ED40B2CE6A1C800B54F1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FD0ED3EA2CE6A1C500B54F1D = {
+			isa = PBXGroup;
+			children = (
+				FD0ED3F52CE6A1C500B54F1D /* ConcordiaHeater */,
+				FD0ED4072CE6A1C800B54F1D /* ConcordiaHeaterTests */,
+				FD0ED4112CE6A1C800B54F1D /* ConcordiaHeaterUITests */,
+				FD0ED3F42CE6A1C500B54F1D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FD0ED3F42CE6A1C500B54F1D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FD0ED3F32CE6A1C500B54F1D /* ConcordiaHeater.app */,
+				FD0ED4042CE6A1C800B54F1D /* ConcordiaHeaterTests.xctest */,
+				FD0ED40E2CE6A1C800B54F1D /* ConcordiaHeaterUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FD0ED3F52CE6A1C500B54F1D /* ConcordiaHeater */ = {
+			isa = PBXGroup;
+			children = (
+				FD0ED3F62CE6A1C500B54F1D /* ConcordiaHeaterApp.swift */,
+				FD0ED3F82CE6A1C500B54F1D /* ContentView.swift */,
+				FD0ED3FA2CE6A1C800B54F1D /* Assets.xcassets */,
+				FD0ED3FC2CE6A1C800B54F1D /* ConcordiaHeater.entitlements */,
+				FD0ED3FD2CE6A1C800B54F1D /* Preview Content */,
+			);
+			path = ConcordiaHeater;
+			sourceTree = "<group>";
+		};
+		FD0ED3FD2CE6A1C800B54F1D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FD0ED3FE2CE6A1C800B54F1D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FD0ED4072CE6A1C800B54F1D /* ConcordiaHeaterTests */ = {
+			isa = PBXGroup;
+			children = (
+				FD0ED4082CE6A1C800B54F1D /* ConcordiaHeaterTests.swift */,
+			);
+			path = ConcordiaHeaterTests;
+			sourceTree = "<group>";
+		};
+		FD0ED4112CE6A1C800B54F1D /* ConcordiaHeaterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FD0ED4122CE6A1C800B54F1D /* ConcordiaHeaterUITests.swift */,
+				FD0ED4142CE6A1C800B54F1D /* ConcordiaHeaterUITestsLaunchTests.swift */,
+			);
+			path = ConcordiaHeaterUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FD0ED3F22CE6A1C500B54F1D /* ConcordiaHeater */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD0ED4182CE6A1C800B54F1D /* Build configuration list for PBXNativeTarget "ConcordiaHeater" */;
+			buildPhases = (
+				FD0ED3EF2CE6A1C500B54F1D /* Sources */,
+				FD0ED3F02CE6A1C500B54F1D /* Frameworks */,
+				FD0ED3F12CE6A1C500B54F1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ConcordiaHeater;
+			productName = ConcordiaHeater;
+			productReference = FD0ED3F32CE6A1C500B54F1D /* ConcordiaHeater.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FD0ED4032CE6A1C800B54F1D /* ConcordiaHeaterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD0ED41B2CE6A1C800B54F1D /* Build configuration list for PBXNativeTarget "ConcordiaHeaterTests" */;
+			buildPhases = (
+				FD0ED4002CE6A1C800B54F1D /* Sources */,
+				FD0ED4012CE6A1C800B54F1D /* Frameworks */,
+				FD0ED4022CE6A1C800B54F1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD0ED4062CE6A1C800B54F1D /* PBXTargetDependency */,
+			);
+			name = ConcordiaHeaterTests;
+			productName = ConcordiaHeaterTests;
+			productReference = FD0ED4042CE6A1C800B54F1D /* ConcordiaHeaterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FD0ED40D2CE6A1C800B54F1D /* ConcordiaHeaterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD0ED41E2CE6A1C800B54F1D /* Build configuration list for PBXNativeTarget "ConcordiaHeaterUITests" */;
+			buildPhases = (
+				FD0ED40A2CE6A1C800B54F1D /* Sources */,
+				FD0ED40B2CE6A1C800B54F1D /* Frameworks */,
+				FD0ED40C2CE6A1C800B54F1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD0ED4102CE6A1C800B54F1D /* PBXTargetDependency */,
+			);
+			name = ConcordiaHeaterUITests;
+			productName = ConcordiaHeaterUITests;
+			productReference = FD0ED40E2CE6A1C800B54F1D /* ConcordiaHeaterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FD0ED3EB2CE6A1C500B54F1D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					FD0ED3F22CE6A1C500B54F1D = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					FD0ED4032CE6A1C800B54F1D = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = FD0ED3F22CE6A1C500B54F1D;
+					};
+					FD0ED40D2CE6A1C800B54F1D = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = FD0ED3F22CE6A1C500B54F1D;
+					};
+				};
+			};
+			buildConfigurationList = FD0ED3EE2CE6A1C500B54F1D /* Build configuration list for PBXProject "ConcordiaHeater" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FD0ED3EA2CE6A1C500B54F1D;
+			productRefGroup = FD0ED3F42CE6A1C500B54F1D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FD0ED3F22CE6A1C500B54F1D /* ConcordiaHeater */,
+				FD0ED4032CE6A1C800B54F1D /* ConcordiaHeaterTests */,
+				FD0ED40D2CE6A1C800B54F1D /* ConcordiaHeaterUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FD0ED3F12CE6A1C500B54F1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD0ED3FF2CE6A1C800B54F1D /* Preview Assets.xcassets in Resources */,
+				FD0ED3FB2CE6A1C800B54F1D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD0ED4022CE6A1C800B54F1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD0ED40C2CE6A1C800B54F1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FD0ED3EF2CE6A1C500B54F1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD0ED3F92CE6A1C500B54F1D /* ContentView.swift in Sources */,
+				FD0ED3F72CE6A1C500B54F1D /* ConcordiaHeaterApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD0ED4002CE6A1C800B54F1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD0ED4092CE6A1C800B54F1D /* ConcordiaHeaterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD0ED40A2CE6A1C800B54F1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD0ED4152CE6A1C800B54F1D /* ConcordiaHeaterUITestsLaunchTests.swift in Sources */,
+				FD0ED4132CE6A1C800B54F1D /* ConcordiaHeaterUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FD0ED4062CE6A1C800B54F1D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD0ED3F22CE6A1C500B54F1D /* ConcordiaHeater */;
+			targetProxy = FD0ED4052CE6A1C800B54F1D /* PBXContainerItemProxy */;
+		};
+		FD0ED4102CE6A1C800B54F1D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD0ED3F22CE6A1C500B54F1D /* ConcordiaHeater */;
+			targetProxy = FD0ED40F2CE6A1C800B54F1D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FD0ED4162CE6A1C800B54F1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FD0ED4172CE6A1C800B54F1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		FD0ED4192CE6A1C800B54F1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ConcordiaHeater/ConcordiaHeater.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ConcordiaHeater/Preview Content\"";
+				DEVELOPMENT_TEAM = PKKP3P6RGM;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = codes.emil.ConcordiaHeater;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		FD0ED41A2CE6A1C800B54F1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ConcordiaHeater/ConcordiaHeater.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ConcordiaHeater/Preview Content\"";
+				DEVELOPMENT_TEAM = PKKP3P6RGM;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = codes.emil.ConcordiaHeater;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		FD0ED41C2CE6A1C800B54F1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PKKP3P6RGM;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = codes.emil.ConcordiaHeaterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ConcordiaHeater.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ConcordiaHeater";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		FD0ED41D2CE6A1C800B54F1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PKKP3P6RGM;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = codes.emil.ConcordiaHeaterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ConcordiaHeater.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ConcordiaHeater";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		FD0ED41F2CE6A1C800B54F1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PKKP3P6RGM;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = codes.emil.ConcordiaHeaterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = ConcordiaHeater;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		FD0ED4202CE6A1C800B54F1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PKKP3P6RGM;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = codes.emil.ConcordiaHeaterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = ConcordiaHeater;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FD0ED3EE2CE6A1C500B54F1D /* Build configuration list for PBXProject "ConcordiaHeater" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD0ED4162CE6A1C800B54F1D /* Debug */,
+				FD0ED4172CE6A1C800B54F1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD0ED4182CE6A1C800B54F1D /* Build configuration list for PBXNativeTarget "ConcordiaHeater" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD0ED4192CE6A1C800B54F1D /* Debug */,
+				FD0ED41A2CE6A1C800B54F1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD0ED41B2CE6A1C800B54F1D /* Build configuration list for PBXNativeTarget "ConcordiaHeaterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD0ED41C2CE6A1C800B54F1D /* Debug */,
+				FD0ED41D2CE6A1C800B54F1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD0ED41E2CE6A1C800B54F1D /* Build configuration list for PBXNativeTarget "ConcordiaHeaterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD0ED41F2CE6A1C800B54F1D /* Debug */,
+				FD0ED4202CE6A1C800B54F1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FD0ED3EB2CE6A1C500B54F1D /* Project object */;
+}
