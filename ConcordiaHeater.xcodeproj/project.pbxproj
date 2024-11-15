@@ -15,7 +15,6 @@
 		FD0ED4132CE6A1C800B54F1D /* ConcordiaHeaterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0ED4122CE6A1C800B54F1D /* ConcordiaHeaterUITests.swift */; };
 		FD0ED4152CE6A1C800B54F1D /* ConcordiaHeaterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0ED4142CE6A1C800B54F1D /* ConcordiaHeaterUITestsLaunchTests.swift */; };
 		FD0ED4222CE6A35B00B54F1D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD0ED4212CE6A35B00B54F1D /* GoogleService-Info.plist */; };
-		FD0ED4252CE6A41900B54F1D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FD0ED4242CE6A41900B54F1D /* FirebaseFirestore */; };
 		FD0ED4272CE6A72E00B54F1D /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0ED4262CE6A72A00B54F1D /* Device.swift */; };
 		FD86DDDA2CE7299400BE7FB2 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = FD86DDD92CE7299400BE7FB2 /* FirebaseDatabase */; };
 		FD86DDE02CE7D80700BE7FB2 /* TemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86DDDF2CE7D80700BE7FB2 /* TemperatureView.swift */; };
@@ -69,7 +68,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD86DDDA2CE7299400BE7FB2 /* FirebaseDatabase in Frameworks */,
-				FD0ED4252CE6A41900B54F1D /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,7 +176,6 @@
 			);
 			name = ConcordiaHeater;
 			packageProductDependencies = (
-				FD0ED4242CE6A41900B54F1D /* FirebaseFirestore */,
 				FD86DDD92CE7299400BE7FB2 /* FirebaseDatabase */,
 			);
 			productName = ConcordiaHeater;
@@ -674,11 +671,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FD0ED4242CE6A41900B54F1D /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FD0ED4232CE6A41900B54F1D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
 		FD86DDD92CE7299400BE7FB2 /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FD0ED4232CE6A41900B54F1D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
