@@ -32,7 +32,6 @@ struct ConcordiaHeaterApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(manager: manager)
-                .environment(\.locale, Locale.init(identifier: "en-CA"))
         }
     }
 }

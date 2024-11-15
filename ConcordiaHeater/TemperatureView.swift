@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct TemperatureView: View {
-    static let tempFormatter = Measurement<UnitTemperature>.FormatStyle.measurement(width: .narrow, numberFormatStyle: .number.precision(.fractionLength(1)))
+    static let tempFormatter = Measurement<UnitTemperature>.FormatStyle.measurement(
+        width: .narrow,
+        usage: .weather,
+        numberFormatStyle: .number.precision(.fractionLength(1)))
     @ObservedObject var manager: DeviceManager
     var device: Device
     
