@@ -38,7 +38,19 @@ class DeviceManager: ObservableObject {
                 let decoder = Database.Decoder()
                 decoder.dateDecodingStrategy = .millisecondsSince1970
                 self.myDevice = try snapshot.data(as: Device.self, decoder: decoder)
+                // update last update to red
+                self.updateAfter(self.myDevice!.lastUpdate.timeIntervalSinceNow + 60)
+                // update status explanation text
+                self.updateAfter(self.myDevice!.lastMovement.timeIntervalSinceNow + 30)
+                self.updateAfter(self.myDevice!.lastMovement.timeIntervalSinceNow + 45)
             }
+        }
+    }
+    
+    private func updateAfter(_ delay: Double) {
+        if delay <= 0 { return }
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + .milliseconds(Int(1000 * delay))) {
+            self.objectWillChange.send()
         }
     }
     

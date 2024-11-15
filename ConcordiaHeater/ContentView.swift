@@ -42,17 +42,33 @@ struct DeviceView: View {
                     }
                 }
             } footer: {
-                switch device.mode {
-                case .disabled:
+                switch (device.mode, device.heating) {
+                case (.disabled, true):
+                    Text("Heater is disabled and will stop heating shortly")
+                case (.disabled, false):
                     Text("Heater is disabled and will not heat")
-                case .enabled:
-                    if device.heating {
-                        Text("Heater is heating, as someone is in the room")
+                case (.enabled, true):
+                    if device.lastMovement.timeIntervalSinceNow < -45 {
+                        Text("Heater will stop shortly as no movement is detected")
                     } else {
-                        Text("Heater will heat once someone will be in the room")
+                        Text("Heater is heating as movement was detected")
                     }
-                case .heat:
-                    Text("Heater is heating")
+                case (.enabled, false):
+                    if device.lastMovement.timeIntervalSinceNow < -30 {
+                        Text("Heater will heat once someone enters the room")
+                    } else if device.currentTemp < device.setTemp {
+                        Text("Heater will start shortly as movement was detected")
+                    } else {
+                        Text("Heater is enabled as movement was detected, temperature is stable")
+                    }
+                case (.heat, true):
+                    Text("Heater is enabled and heating")
+                case (.heat, false):
+                    if device.currentTemp < device.setTemp {
+                        Text("Heater will start shortly")
+                    } else {
+                        Text("Heater is enabled and temperature is stable")
+                    }
                 }
             }
             TemperatureView(manager: manager, device: device)
@@ -102,9 +118,14 @@ struct TemperatureView: View {
             }.buttonStyle(BorderedButtonStyle())
                 .labelStyle(.iconOnly)
                 .padding(.bottom)
-            Text("Last updated \(device.lastUpdate, style: .relative) ago")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            HStack {
+                if device.lastUpdate.timeIntervalSinceNow < -60 {
+                    Image(systemName: "wifi.exclamationmark")
+                }
+                Text("Last updated \(device.lastUpdate, style: .relative) ago")
+            }
+            .font(.caption)
+            .foregroundStyle(device.lastUpdate.timeIntervalSinceNow < -60 ? .red : .secondary)
         }
         .padding(.vertical)
     }

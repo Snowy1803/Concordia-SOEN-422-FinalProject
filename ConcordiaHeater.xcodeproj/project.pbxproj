@@ -109,8 +109,8 @@
 		FD0ED3F52CE6A1C500B54F1D /* ConcordiaHeater */ = {
 			isa = PBXGroup;
 			children = (
-				FD0ED4262CE6A72A00B54F1D /* Model.swift */,
 				FD0ED4212CE6A35B00B54F1D /* GoogleService-Info.plist */,
+				FD0ED4262CE6A72A00B54F1D /* Model.swift */,
 				FD0ED3F62CE6A1C500B54F1D /* ConcordiaHeaterApp.swift */,
 				FD0ED3F82CE6A1C500B54F1D /* ContentView.swift */,
 				FD0ED3FA2CE6A1C800B54F1D /* Assets.xcassets */,
