@@ -14,7 +14,6 @@ struct ContentView: View {
         NavigationView {
             if let device = manager.myDevice {
                 DeviceView(manager: manager, device: device)
-                
             } else {
                 ProgressView()
             }

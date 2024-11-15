@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  DeviceStatusView.swift
 //  ConcordiaHeater
 //
 //  Created by Emil Pedersen on 14/11/2024.

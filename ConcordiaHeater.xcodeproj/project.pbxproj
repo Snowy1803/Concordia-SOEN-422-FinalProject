@@ -16,10 +16,11 @@
 		FD0ED4152CE6A1C800B54F1D /* ConcordiaHeaterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0ED4142CE6A1C800B54F1D /* ConcordiaHeaterUITestsLaunchTests.swift */; };
 		FD0ED4222CE6A35B00B54F1D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD0ED4212CE6A35B00B54F1D /* GoogleService-Info.plist */; };
 		FD0ED4252CE6A41900B54F1D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FD0ED4242CE6A41900B54F1D /* FirebaseFirestore */; };
-		FD0ED4272CE6A72E00B54F1D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0ED4262CE6A72A00B54F1D /* Model.swift */; };
+		FD0ED4272CE6A72E00B54F1D /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0ED4262CE6A72A00B54F1D /* Device.swift */; };
 		FD86DDDA2CE7299400BE7FB2 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = FD86DDD92CE7299400BE7FB2 /* FirebaseDatabase */; };
 		FD86DDE02CE7D80700BE7FB2 /* TemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86DDDF2CE7D80700BE7FB2 /* TemperatureView.swift */; };
 		FD86DDE22CE7D82700BE7FB2 /* DeviceStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86DDE12CE7D82700BE7FB2 /* DeviceStatusView.swift */; };
+		FD86DDE42CE7D8EB00BE7FB2 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86DDE32CE7D8EB00BE7FB2 /* DeviceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,9 +53,10 @@
 		FD0ED4122CE6A1C800B54F1D /* ConcordiaHeaterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcordiaHeaterUITests.swift; sourceTree = "<group>"; };
 		FD0ED4142CE6A1C800B54F1D /* ConcordiaHeaterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcordiaHeaterUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FD0ED4212CE6A35B00B54F1D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		FD0ED4262CE6A72A00B54F1D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		FD0ED4262CE6A72A00B54F1D /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		FD86DDDF2CE7D80700BE7FB2 /* TemperatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureView.swift; sourceTree = "<group>"; };
 		FD86DDE12CE7D82700BE7FB2 /* DeviceStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceStatusView.swift; sourceTree = "<group>"; };
+		FD86DDE32CE7D8EB00BE7FB2 /* DeviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -114,7 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				FD0ED4212CE6A35B00B54F1D /* GoogleService-Info.plist */,
-				FD0ED4262CE6A72A00B54F1D /* Model.swift */,
+				FD0ED4262CE6A72A00B54F1D /* Device.swift */,
+				FD86DDE32CE7D8EB00BE7FB2 /* DeviceManager.swift */,
 				FD0ED3F62CE6A1C500B54F1D /* ConcordiaHeaterApp.swift */,
 				FD0ED3F82CE6A1C500B54F1D /* ContentView.swift */,
 				FD86DDE12CE7D82700BE7FB2 /* DeviceStatusView.swift */,
@@ -296,7 +299,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD0ED4272CE6A72E00B54F1D /* Model.swift in Sources */,
+				FD0ED4272CE6A72E00B54F1D /* Device.swift in Sources */,
+				FD86DDE42CE7D8EB00BE7FB2 /* DeviceManager.swift in Sources */,
 				FD86DDE02CE7D80700BE7FB2 /* TemperatureView.swift in Sources */,
 				FD0ED3F92CE6A1C500B54F1D /* ContentView.swift in Sources */,
 				FD0ED3F72CE6A1C500B54F1D /* ConcordiaHeaterApp.swift in Sources */,
