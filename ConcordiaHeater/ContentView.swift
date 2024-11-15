@@ -60,7 +60,7 @@ struct DeviceView: View {
                 Text("Last movement: \(device.lastMovement, style: .relative) ago")
             }
         }
-        .navigationTitle(device.id ?? "Unknown")
+        .navigationTitle(manager.documentId)
     }
 }
 

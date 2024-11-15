@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FirebaseFirestore
+import FirebaseDatabase
 
 enum Mode: Int, Codable {
     case disabled
@@ -15,7 +15,6 @@ enum Mode: Int, Codable {
 }
 
 struct Device: Codable {
-    @DocumentID var id: String?
     var currentTemp: Double
     var setTemp: Double
     var lastMovement: Date
@@ -25,36 +24,38 @@ struct Device: Codable {
 }
 
 class DeviceManager: ObservableObject {
-    let db = Firestore.firestore()
+    let base = Database.database()
+    let documentId = "H968"
     @Published var myDevice: Device?
     
-    func fetch() async throws {
-        let device = try await fetchDevice(documentId: "H968")
-        Task { @MainActor in
-            myDevice = device
+    init() {
+        initListener()
+    }
+    
+    func initListener() {
+        base.reference().child(documentId).observe(.value) { snapshot in
+            Task { @MainActor in
+                let decoder = Database.Decoder()
+                decoder.dateDecodingStrategy = .millisecondsSince1970
+                self.myDevice = try snapshot.data(as: Device.self, decoder: decoder)
+            }
         }
     }
     
-    private func fetchDevice(documentId: String) async throws -> Device {
-        try await db.collection("heater").document(documentId).getDocument(as: Device.self)
-    }
-    
     func incrementSetTemp(by value: Double) {
-        guard let id = myDevice?.id else { return }
         myDevice?.setTemp += value
         Task {
             if let myDevice {
-                try await db.collection("heater").document(id).updateData(["setTemp": myDevice.setTemp])
+                base.reference().child(documentId).child("setTemp").setValue(myDevice.setTemp)
             }
         }
     }
     
     func setMode(_ mode: Mode) {
-        guard let id = myDevice?.id else { return }
         myDevice?.mode = mode
         Task {
             if let myDevice {
-                try await db.collection("heater").document(id).updateData(["mode": myDevice.mode.rawValue])
+                base.reference().child(documentId).child("mode").setValue(myDevice.mode.rawValue)
             }
         }
     }
