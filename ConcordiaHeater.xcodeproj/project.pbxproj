@@ -59,7 +59,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		FD86DDDB2CE7C5AA00BE7FB2 /* Arduino */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Arduino; sourceTree = "<group>"; };
+		FD86DDDB2CE7C5AA00BE7FB2 /* Arduino */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {final_project_heater/final_project_heater.ino = sourcecode.cpp.cpp; }; explicitFolders = (); path = Arduino; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */

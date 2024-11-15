@@ -9,16 +9,32 @@
 #define REFERENCE_URL "https://concordia-heater-default-rtdb.firebaseio.com/"
 #define MY_PATH "H968/"
 
+#define SERVER_TIMESTAMP "{\".sv\": \"timestamp\"}"
+
 Firebase fb(REFERENCE_URL);
 
-
+/// The mode of the device
 enum Mode {
-  MODE_DISABLED, MODE_ENABLED, MODE_HEAT
+  /// The device is disabled
+  MODE_DISABLED,
+  /// The device is enabled when movement is detected
+  MODE_ENABLED,
+  /// The device is enabled unconditionally
+  MODE_HEAT
 } mode;
+/// The current (from sensor) and target (from settings) temperature
 double currentTemp, setTemp;
+/// If we should enabled the heater (device is enabled and current
+//// temperature is less than target)
 bool heating;
-bool pushMovement; // a movement happened without updating firestore
-unsigned long lastMovement; // millis() since start, ≠ what's on firestore
+/// If a movement happened since the last server update
+bool pushMovement;
+/// The millis() of the last movement
+/// Different to the lastMovement stored on firebase, as firebase
+/// will have a timestamp of the last pushMovement (which can be up to
+/// 15 seconds late), while this is based on the uptime
+unsigned long lastMovement;
+/// The millis() of the last server update
 unsigned long lastUpdate;
 
 void setup() {
@@ -36,21 +52,16 @@ void setup() {
   Serial.println(WiFi.localIP());
 }
 
-void loop() {
-  unsigned long tick = millis();
-  if (tick == 0) tick = 1;
-  bool serverUpdateNow = tick - lastUpdate > 15000;
-  // update setTemp and mode
-  if (serverUpdateNow) {
-    Serial.print("Server Update!");
-    mode = static_cast<Mode>(fb.getInt(MY_PATH "mode"));
-    setTemp = fb.getFloat(MY_PATH "setTemp");
-    // WHILE WAITING FOR TEMP SENSOR:
-    currentTemp = fb.getFloat(MY_PATH "currentTemp");
-    Serial.println(" OK");
-  }
+/// Download settings (mode, setTemp) from firebase
+void downloadServerSettings() {
+  mode = static_cast<Mode>(fb.getInt(MY_PATH "mode"));
+  setTemp = fb.getFloat(MY_PATH "setTemp");
+  // WHILE WAITING FOR TEMP SENSOR:
+  currentTemp = fb.getFloat(MY_PATH "currentTemp");
+}
 
-  // compute lastMovement
+/// Update `lastMovement` if a movement is detected
+void updateLastMovement() {
   // int value = analogRead(12);
   int value = digitalRead(13);
   Serial.println(value);
@@ -58,10 +69,14 @@ void loop() {
     pushMovement = true;
     lastMovement = tick;
   }
+}
 
-  // TODO compute currentTemp
+/// Update `currentTemp` from the sensor
+void updateCurrentTemp() {
+  // TODO: implement
+}
 
-  // compute heating
+void updateHeating() {
   switch (mode) {
   case MODE_DISABLED:
     heating = false;
@@ -76,24 +91,49 @@ void loop() {
   if (heating && currentTemp >= setTemp) {
     heating = false;
   }
-  // TODO do heat
+  // TODO: set real heat
+}
 
-  // send info
+/// Print the current state, for debugging
+void printState() {
+  Serial.println(String("Tick: ") + tick);
+  Serial.println(String("Mode: ") + mode);
+  Serial.println(String("Temp: ") + currentTemp + "; target: " + setTemp);
+  Serial.println(String("Heating: ") + heating);
+  Serial.println(String("Movement: ") + lastMovement + (pushMovement ? " PUSH" : ""));
+}
+
+/// Upload the state of the device to firebase
+void uploadState() {
+  fb.setBool(MY_PATH "heating", heating);
+  // TODO: fb.setFloat(MY_PATH "currentTemp", currentTemp);
+  if (pushMovement)
+    fb.setJson(MY_PATH "lastMovement", SERVER_TIMESTAMP);
+  fb.setJson(MY_PATH "lastUpdate", SERVER_TIMESTAMP);
+  lastUpdate = tick;
+  pushMovement = false;
+}
+
+void loop() {
+  /// The number of milliseconds since the start, of when the tick started.
+  /// Nonzero. May overflow.
+  unsigned long tick = millis();
+  if (tick == 0) tick = 1;
+  bool serverUpdateNow = tick - lastUpdate > 15000;
+
   if (serverUpdateNow) {
-    // print (debug)
-    Serial.println(String("Tick: ") + tick);
-    Serial.println(String("Mode: ") + mode);
-    Serial.println(String("Temp: ") + currentTemp + "; target: " + setTemp);
-    Serial.println(String("Heating: ") + heating);
-    Serial.println(String("Movement: ") + lastMovement + (pushMovement ? " PUSH" : ""));
+    Serial.print("Server Update!");
+    downloadServerSettings();
+    Serial.println(" OK");
+  }
 
-    fb.setBool(MY_PATH "heating", heating);
-    // TODO send currentTemp
-    if (pushMovement)
-      fb.setJson(MY_PATH "lastMovement", "{\".sv\": \"timestamp\"}");
-    fb.setJson(MY_PATH "lastUpdate", "{\".sv\": \"timestamp\"}");
-    lastUpdate = tick;
-    pushMovement = false;
+  updateLastMovement();
+  updateCurrentTemp();
+  updateHeating();
+
+  if (serverUpdateNow) {
+    printState();
+    uploadState();
   }
 
   delay(100);
