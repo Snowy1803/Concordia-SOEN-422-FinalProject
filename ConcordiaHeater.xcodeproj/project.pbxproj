@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -53,6 +53,10 @@
 		FD0ED4262CE6A72A00B54F1D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		FD86DDDB2CE7C5AA00BE7FB2 /* Arduino */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Arduino; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		FD0ED3F02CE6A1C500B54F1D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -83,6 +87,7 @@
 		FD0ED3EA2CE6A1C500B54F1D = {
 			isa = PBXGroup;
 			children = (
+				FD86DDDB2CE7C5AA00BE7FB2 /* Arduino */,
 				FD0ED3F52CE6A1C500B54F1D /* ConcordiaHeater */,
 				FD0ED4072CE6A1C800B54F1D /* ConcordiaHeaterTests */,
 				FD0ED4112CE6A1C800B54F1D /* ConcordiaHeaterUITests */,
