@@ -56,4 +56,13 @@ class DeviceManager: ObservableObject {
             }
         }
     }
+    
+    func setBuzzerSetting(_ setting: BuzzerSetting) {
+        myDevice?.buzzer = setting
+        Task {
+            if let myDevice {
+                base.reference().child(documentId).child("buzzer").setValue(myDevice.buzzer.rawValue)
+            }
+        }
+    }
 }

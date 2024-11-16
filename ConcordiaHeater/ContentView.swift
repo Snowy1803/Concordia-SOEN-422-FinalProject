@@ -29,6 +29,7 @@ struct DeviceView: View {
         Form {
             DeviceStatusView(manager: manager, device: device)
             TemperatureView(manager: manager, device: device)
+            BuzzerSettingsView(manager: manager, device: device)
             Section {
                 Text("Last movement: \(device.lastMovement, style: .relative) ago")
             }

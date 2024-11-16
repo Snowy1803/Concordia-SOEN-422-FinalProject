@@ -20,6 +20,7 @@
 		FD86DDE02CE7D80700BE7FB2 /* TemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86DDDF2CE7D80700BE7FB2 /* TemperatureView.swift */; };
 		FD86DDE22CE7D82700BE7FB2 /* DeviceStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86DDE12CE7D82700BE7FB2 /* DeviceStatusView.swift */; };
 		FD86DDE42CE7D8EB00BE7FB2 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86DDE32CE7D8EB00BE7FB2 /* DeviceManager.swift */; };
+		FD86DDE62CE81FBC00BE7FB2 /* BuzzerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86DDE52CE81FBC00BE7FB2 /* BuzzerSettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		FD86DDDF2CE7D80700BE7FB2 /* TemperatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureView.swift; sourceTree = "<group>"; };
 		FD86DDE12CE7D82700BE7FB2 /* DeviceStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceStatusView.swift; sourceTree = "<group>"; };
 		FD86DDE32CE7D8EB00BE7FB2 /* DeviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
+		FD86DDE52CE81FBC00BE7FB2 /* BuzzerSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuzzerSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -119,6 +121,7 @@
 				FD0ED3F62CE6A1C500B54F1D /* ConcordiaHeaterApp.swift */,
 				FD0ED3F82CE6A1C500B54F1D /* ContentView.swift */,
 				FD86DDE12CE7D82700BE7FB2 /* DeviceStatusView.swift */,
+				FD86DDE52CE81FBC00BE7FB2 /* BuzzerSettingsView.swift */,
 				FD86DDDF2CE7D80700BE7FB2 /* TemperatureView.swift */,
 				FD0ED3FA2CE6A1C800B54F1D /* Assets.xcassets */,
 				FD0ED3FC2CE6A1C800B54F1D /* ConcordiaHeater.entitlements */,
@@ -299,6 +302,7 @@
 				FD0ED4272CE6A72E00B54F1D /* Device.swift in Sources */,
 				FD86DDE42CE7D8EB00BE7FB2 /* DeviceManager.swift in Sources */,
 				FD86DDE02CE7D80700BE7FB2 /* TemperatureView.swift in Sources */,
+				FD86DDE62CE81FBC00BE7FB2 /* BuzzerSettingsView.swift in Sources */,
 				FD0ED3F92CE6A1C500B54F1D /* ContentView.swift in Sources */,
 				FD0ED3F72CE6A1C500B54F1D /* ConcordiaHeaterApp.swift in Sources */,
 				FD86DDE22CE7D82700BE7FB2 /* DeviceStatusView.swift in Sources */,

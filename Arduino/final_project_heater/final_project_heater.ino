@@ -37,6 +37,20 @@ unsigned long lastMovement;
 /// The millis() of the last server update
 unsigned long lastUpdate;
 
+/// The mode of the buzzer
+enum BuzzerSetting {
+  /// The buzzer is silent / disabled
+  BUZZER_SILENT
+  /// The buzzer signals mode changes
+  BUZZER_MODE
+  /// The buzzer signals mode changes, and when heating changes due to movement
+  BUZZER_ENABLED
+  /// The buzzer signals mode changes, and when heating changes for any reason
+  BUZZER_HEATING
+  /// The buzzer signals mode changes, heating changes, and target temperature  changes
+  BUZZER_ALL
+} buzzer;
+
 void setup() {
   pinMode(13, INPUT);
   Serial.begin(115200);
@@ -58,6 +72,7 @@ void downloadServerSettings() {
   setTemp = fb.getFloat(MY_PATH "setTemp");
   // WHILE WAITING FOR TEMP SENSOR:
   currentTemp = fb.getFloat(MY_PATH "currentTemp");
+  buzzer = static_cast<BuzzerSetting>(fb.getInt(MY_PATH "buzzer"));
 }
 
 /// Update `lastMovement` if a movement is detected

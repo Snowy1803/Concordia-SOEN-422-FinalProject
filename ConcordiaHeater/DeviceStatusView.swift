@@ -25,6 +25,8 @@ struct DeviceStatusView: View {
                     Label("Heat When Room Empty", systemImage: "person.fill.checkmark")
                 }
             }
+        } header: {
+            Text("Mode")
         } footer: {
             switch (device.mode, device.heating) {
             case (.disabled, true):
