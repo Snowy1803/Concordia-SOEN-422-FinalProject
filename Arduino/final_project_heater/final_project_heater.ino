@@ -87,10 +87,9 @@ void downloadServerSettings() {
 
 /// Update `lastMovement` if a movement is detected
 void updateLastMovement() {
-  // int value = analogRead(12);
   int value = digitalRead(MOVEMENT_SENSOR);
   Serial.println(value);
-  if (value) { // > 1500
+  if (value) {
     pushMovement = true;
     lastMovement = tick;
   }
