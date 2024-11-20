@@ -36,19 +36,21 @@ bool pushMovement;
 unsigned long lastMovement;
 /// The millis() of the last server update
 unsigned long lastUpdate;
+/// The millis() of the current tick
+unsigned long tick;
 
 /// The mode of the buzzer
 enum BuzzerSetting {
   /// The buzzer is silent / disabled
-  BUZZER_SILENT
+  BUZZER_SILENT,
   /// The buzzer signals mode changes
-  BUZZER_MODE
+  BUZZER_MODE,
   /// The buzzer signals mode changes, and when heating changes due to movement
-  BUZZER_ENABLED
+  BUZZER_ENABLED,
   /// The buzzer signals mode changes, and when heating changes for any reason
-  BUZZER_HEATING
+  BUZZER_HEATING,
   /// The buzzer signals mode changes, heating changes, and target temperature  changes
-  BUZZER_ALL
+  BUZZER_ALL,
 } buzzer;
 
 void setup() {
@@ -132,7 +134,7 @@ void uploadState() {
 void loop() {
   /// The number of milliseconds since the start, of when the tick started.
   /// Nonzero. May overflow.
-  unsigned long tick = millis();
+  tick = millis();
   if (tick == 0) tick = 1;
   bool serverUpdateNow = tick - lastUpdate > 15000;
 
