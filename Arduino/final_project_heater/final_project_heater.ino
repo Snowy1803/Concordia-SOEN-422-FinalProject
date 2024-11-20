@@ -1,6 +1,8 @@
 #include <WiFi.h>
 #include <Firebase.h>
+#include "DHT.h"
 
+#define TEMP_SENSOR 17
 #define BUZZER 21
 #define MOVEMENT_SENSOR 13
 
@@ -13,6 +15,7 @@
 #define SERVER_TIMESTAMP "{\".sv\": \"timestamp\"}"
 
 Firebase fb(REFERENCE_URL);
+DHT dht(TEMP_SENSOR, DHT11);
 
 /// The mode of the device
 enum Mode {
@@ -24,7 +27,7 @@ enum Mode {
   MODE_HEAT
 } mode;
 /// The current (from sensor) and target (from settings) temperature
-double currentTemp, setTemp;
+double currentTemp = 0.0/0.0, setTemp;
 /// If we should enabled the heater (device is enabled and current
 //// temperature is less than target)
 bool heating;
@@ -39,6 +42,8 @@ unsigned long lastMovement;
 unsigned long lastUpdate;
 /// The millis() of the current tick
 unsigned long tick;
+/// The millis() of the next time to read the temperature
+unsigned long nextTempRead;
 
 /// The mode of the buzzer
 enum BuzzerSetting {
@@ -55,6 +60,7 @@ BuzzerSetting doBuzz = BUZZER_SILENT;
 void setup() {
   pinMode(MOVEMENT_SENSOR, INPUT);
   Serial.begin(115200);
+  dht.begin();
 
   WiFi.begin(WIFI_SSID, WIFI_PASSWD);
   Serial.print("Connecting");
@@ -65,6 +71,7 @@ void setup() {
   Serial.println("");
   Serial.print("Connected to WiFi network with IP Address: ");
   Serial.println(WiFi.localIP());
+  nextTempRead = millis() + 5000;
 }
 
 /// Download settings (mode, setTemp) from firebase
@@ -75,8 +82,6 @@ void downloadServerSettings() {
     doBuzz = BUZZER_MODE;
   }
   setTemp = fb.getFloat(MY_PATH "setTemp");
-  // WHILE WAITING FOR TEMP SENSOR:
-  currentTemp = fb.getFloat(MY_PATH "currentTemp");
   buzzer = static_cast<BuzzerSetting>(fb.getInt(MY_PATH "buzzer"));
 }
 
@@ -92,8 +97,18 @@ void updateLastMovement() {
 }
 
 /// Update `currentTemp` from the sensor
+/// Will only read every 2 seconds.
 void updateCurrentTemp() {
-  // TODO: implement
+  if (nextTempRead >= tick)
+    return;
+  float h = dht.readHumidity();
+  float temp = dht.readTemperature();
+  if (isnan(temp)) {
+    Serial.println("Failed to read from DHT sensor!");
+    return;
+  }
+  currentTemp = temp;
+  nextTempRead = tick + 2000;
 }
 
 void updateHeating() {
@@ -130,7 +145,8 @@ void printState() {
 /// Upload the state of the device to firebase
 void uploadState() {
   fb.setBool(MY_PATH "heating", heating);
-  // TODO: fb.setFloat(MY_PATH "currentTemp", currentTemp);
+  if (!isnan(currentTemp))
+    fb.setFloat(MY_PATH "currentTemp", currentTemp);
   if (pushMovement)
     fb.setJson(MY_PATH "lastMovement", SERVER_TIMESTAMP);
   fb.setJson(MY_PATH "lastUpdate", SERVER_TIMESTAMP);
