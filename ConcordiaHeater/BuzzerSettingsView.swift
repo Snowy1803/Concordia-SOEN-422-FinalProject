@@ -19,7 +19,7 @@ struct BuzzerSettingsView: View {
                 if let setting = BuzzerSetting(rawValue: Int(value)) {
                     manager.setBuzzerSetting(setting)
                 }
-            }, in: Double(BuzzerSetting.silent.rawValue) ... Double(BuzzerSetting.all.rawValue)) {
+            }, in: Double(BuzzerSetting.silent.rawValue) ... Double(BuzzerSetting.heating.rawValue)) {
                 Text("Sound level")
             } minimumValueLabel: {
                 Text("Silent")
@@ -34,12 +34,8 @@ struct BuzzerSettingsView: View {
                 Text("Heater is silent")
             case .mode:
                 Text("Heater will sound for mode changes")
-            case .enabled:
-                Text("Heater will sound when heating changes")
             case .heating:
                 Text("Heater will sound when heating changes, even when it is due to a temperature change")
-            case .all:
-                Text("Heater will sound for all changes")
             }
         }
     }

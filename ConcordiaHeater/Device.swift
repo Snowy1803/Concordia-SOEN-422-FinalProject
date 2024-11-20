@@ -21,12 +21,8 @@ enum BuzzerSetting: Int, Codable {
     case silent
     /// The buzzer signals mode changes
     case mode
-    /// The buzzer signals mode changes, and when heating changes due to movement
-    case enabled
     /// The buzzer signals mode changes, and when heating changes for any reason
     case heating
-    /// The buzzer signals mode changes, heating changes, and target temperature  changes
-    case all
 }
 
 struct Device: Codable {

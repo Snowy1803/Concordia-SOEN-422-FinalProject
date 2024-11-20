@@ -2,6 +2,7 @@
 #include <Firebase.h>
 
 #define BUZZER 21
+#define MOVEMENT_SENSOR 13
 
 #define WIFI_SSID "[REDACTED] FILL ME IN"
 #define WIFI_PASSWD "[REDACTED] FILL ME IN"
@@ -45,16 +46,14 @@ enum BuzzerSetting {
   BUZZER_SILENT,
   /// The buzzer signals mode changes
   BUZZER_MODE,
-  /// The buzzer signals mode changes, and when heating changes due to movement
-  BUZZER_ENABLED,
   /// The buzzer signals mode changes, and when heating changes for any reason
   BUZZER_HEATING,
-  /// The buzzer signals mode changes, heating changes, and target temperature  changes
-  BUZZER_ALL,
 } buzzer;
+/// The buzz to make at the current tick
+BuzzerSetting doBuzz = BUZZER_SILENT;
 
 void setup() {
-  pinMode(13, INPUT);
+  pinMode(MOVEMENT_SENSOR, INPUT);
   Serial.begin(115200);
 
   WiFi.begin(WIFI_SSID, WIFI_PASSWD);
@@ -70,7 +69,11 @@ void setup() {
 
 /// Download settings (mode, setTemp) from firebase
 void downloadServerSettings() {
-  mode = static_cast<Mode>(fb.getInt(MY_PATH "mode"));
+  Mode newMode = static_cast<Mode>(fb.getInt(MY_PATH "mode"));
+  if (mode != newMode) {
+    mode = newMode;
+    doBuzz = BUZZER_MODE;
+  }
   setTemp = fb.getFloat(MY_PATH "setTemp");
   // WHILE WAITING FOR TEMP SENSOR:
   currentTemp = fb.getFloat(MY_PATH "currentTemp");
@@ -80,7 +83,7 @@ void downloadServerSettings() {
 /// Update `lastMovement` if a movement is detected
 void updateLastMovement() {
   // int value = analogRead(12);
-  int value = digitalRead(13);
+  int value = digitalRead(MOVEMENT_SENSOR);
   Serial.println(value);
   if (value) { // > 1500
     pushMovement = true;
@@ -94,6 +97,7 @@ void updateCurrentTemp() {
 }
 
 void updateHeating() {
+  bool lastHeating = heating;
   switch (mode) {
   case MODE_DISABLED:
     heating = false;
@@ -107,6 +111,9 @@ void updateHeating() {
   }
   if (heating && currentTemp >= setTemp) {
     heating = false;
+  }
+  if (lastHeating != heating) {
+    doBuzz = BUZZER_HEATING;
   }
   // TODO: set real heat
 }
@@ -153,5 +160,14 @@ void loop() {
     uploadState();
   }
 
+  if (doBuzz >= buzzer && doBuzz) {
+    tone(BUZZER, 118, 90);
+  }
+
   delay(100);
+
+  if (doBuzz >= buzzer && doBuzz) {
+    noTone(BUZZER);
+    doBuzz = BUZZER_SILENT;
+  }
 }
