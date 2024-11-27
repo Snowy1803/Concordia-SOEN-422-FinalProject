@@ -59,6 +59,7 @@ BuzzerSetting doBuzz = BUZZER_SILENT;
 
 void setup() {
   pinMode(MOVEMENT_SENSOR, INPUT);
+  pinMode(HEATER_RELAY, OUTPUT);
   Serial.begin(115200);
   dht.begin();
 
@@ -128,8 +129,8 @@ void updateHeating() {
   }
   if (lastHeating != heating) {
     doBuzz = BUZZER_HEATING;
+    digitalWrite(HEATER_RELAY, heating);
   }
-  // TODO: set real heat
 }
 
 /// Print the current state, for debugging
