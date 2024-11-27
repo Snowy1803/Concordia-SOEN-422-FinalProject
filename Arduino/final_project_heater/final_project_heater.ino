@@ -176,13 +176,13 @@ void loop() {
     uploadState();
   }
 
-  if (doBuzz >= buzzer && doBuzz) {
+  if (doBuzz >= buzzer && buzzer) {
     tone(BUZZER, 118, 90);
   }
 
   delay(100);
 
-  if (doBuzz >= buzzer && doBuzz) {
+  if (doBuzz >= buzzer && buzzer) {
     noTone(BUZZER);
     doBuzz = BUZZER_SILENT;
   }
