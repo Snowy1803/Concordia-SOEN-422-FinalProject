@@ -5,7 +5,8 @@
 
 #define HEATER_RELAY 12
 #define TEMP_SENSOR 17
-#define FLAME_SENSOR 23
+#define FLAME_SENSOR 35
+#define FLAME_SENSOR_ANALOG A0
 #define BUZZER 21
 #define MOVEMENT_SENSOR 13
 
@@ -58,6 +59,10 @@ unsigned long lastUpdate;
 unsigned long tick;
 /// The millis() of the next time to read the temperature
 unsigned long nextTempRead;
+/// The millis() of the last call to tone() in case of a fire
+unsigned long lastAlarmBuzz;
+/// The phase of the 3-tone alarm (0-1-2 buzzes, 3 for pause)
+unsigned char alarmPhase;
 
 /// The mode of the buzzer
 enum BuzzerSetting {
@@ -70,13 +75,12 @@ enum BuzzerSetting {
 } buzzer;
 /// The buzz to make at the current tick
 BuzzerSetting doBuzz = BUZZER_SILENT;
-/// If we are currently buzzing
-bool buzzing = false;
 
 void firebaseCallback(AsyncResult &aResult);
 
 void setup() {
   pinMode(MOVEMENT_SENSOR, INPUT);
+  pinMode(FLAME_SENSOR, INPUT);
   pinMode(HEATER_RELAY, OUTPUT);
   Serial.begin(115200);
   dht.begin();
@@ -157,9 +161,10 @@ void updateLastMovement() {
 
 /// Update `fireDetected` if a flame is detected
 void updateFireDetected() {
-  int value = digitalRead(FLAME_SENSOR);
-//  Serial.println(value);
-  fireDetected = value;
+  // int value = digitalRead(FLAME_SENSOR);
+  int value = analogRead(FLAME_SENSOR_ANALOG);
+  // Serial.println(String("fire detected = ") + value);
+  fireDetected = value > 800;
 }
 
 /// Update `currentTemp` from the sensor
@@ -243,10 +248,17 @@ void loop() {
   if (tick == 0) tick = 1;
   bool serverUpdateNow = tick - lastUpdate > 15000;
 
-  if (buzzing) {
-    noTone(BUZZER);
-    doBuzz = BUZZER_SILENT;
-    buzzing = false;
+  if (fireDetected) {
+    // T3: 4x1s cycle, 0.5s buzz 3 times, then a pause
+    if (tick - lastAlarmBuzz >= 1000) {
+      if (alarmPhase < 3) {
+        tone(BUZZER, 520, 500);
+        alarmPhase++;
+      } else {
+        alarmPhase = 0;
+      }
+      lastAlarmBuzz = tick;
+    }
   }
 
   updateLastMovement();
@@ -261,8 +273,8 @@ void loop() {
     Serial.println(" OK");
   }
 
-  if (doBuzz >= buzzer && buzzer) {
+  if (!fireDetected && doBuzz >= buzzer && buzzer) {
     tone(BUZZER, 118, 90);
-    buzzing = true;
+    doBuzz = BUZZER_SILENT;
   }
 }
