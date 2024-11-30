@@ -33,4 +33,5 @@ struct Device: Codable {
     var lastUpdate: Date
     var heating: Bool
     var buzzer: BuzzerSetting
+    var fire: Bool
 }

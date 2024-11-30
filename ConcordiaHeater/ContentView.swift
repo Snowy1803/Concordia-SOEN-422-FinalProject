@@ -21,12 +21,37 @@ struct ContentView: View {
     }
 }
 
+struct FireAlertView: View {
+    @State private var blinking: Bool = false
+
+    var body: some View {
+        HStack(spacing: 16) {
+            Image(systemName: "light.beacon.max")
+                .imageScale(.large)
+                .symbolEffect(.pulse, options: .repeating, value: blinking)
+                .onAppear {
+                    blinking = true
+                }
+            VStack(alignment: .leading) {
+                Text("Fire Detected")
+                    .font(.headline)
+                Text("Alarm is sounding. Heater is disabled.")
+            }
+        }
+        .listRowBackground(Color(red: 1, green: 0.27, blue: 0))
+        .foregroundColor(.white)
+    }
+}
+
 struct DeviceView: View {
     @ObservedObject var manager: DeviceManager
     var device: Device
     
     var body: some View {
         Form {
+            if device.fire {
+                FireAlertView()
+            }
             DeviceStatusView(manager: manager, device: device)
             TemperatureView(manager: manager, device: device)
             BuzzerSettingsView(manager: manager, device: device)

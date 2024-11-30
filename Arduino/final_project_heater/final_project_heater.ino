@@ -5,6 +5,7 @@
 
 #define HEATER_RELAY 12
 #define TEMP_SENSOR 17
+#define FLAME_SENSOR 23
 #define BUZZER 21
 #define MOVEMENT_SENSOR 13
 
@@ -44,6 +45,8 @@ double currentTemp = 0.0/0.0, setTemp;
 bool heating;
 /// If a movement happened since the last server update
 bool pushMovement;
+/// If a fire was detected
+bool fireDetected;
 /// The millis() of the last movement
 /// Different to the lastMovement stored on firebase, as firebase
 /// will have a timestamp of the last pushMovement (which can be up to
@@ -145,11 +148,18 @@ void firebaseCallback(AsyncResult &result) {
 /// Update `lastMovement` if a movement is detected
 void updateLastMovement() {
   int value = digitalRead(MOVEMENT_SENSOR);
-  Serial.println(value);
+//  Serial.println(value);
   if (value) {
     pushMovement = true;
     lastMovement = tick;
   }
+}
+
+/// Update `fireDetected` if a flame is detected
+void updateFireDetected() {
+  int value = digitalRead(FLAME_SENSOR);
+//  Serial.println(value);
+  fireDetected = value;
 }
 
 /// Update `currentTemp` from the sensor
@@ -183,6 +193,9 @@ void updateHeating() {
   if (heating && currentTemp >= setTemp) {
     heating = false;
   }
+  if (fireDetected) {
+    heating = false;
+  }
   if (lastHeating != heating) {
     doBuzz = BUZZER_HEATING;
     digitalWrite(HEATER_RELAY, heating);
@@ -197,6 +210,7 @@ void printState() {
   Serial.println(String("Heating: ") + heating);
   Serial.println(String("Movement: ") + lastMovement + (pushMovement ? " PUSH" : ""));
   Serial.println(String("Buzzer: ") + buzzer);
+  Serial.println(String("Fire: ") + fireDetected);
 }
 
 /// Upload the state of the device to firebase
@@ -208,6 +222,7 @@ void uploadState() {
   if (pushMovement)
     json.set("lastMovement/.sv", "timestamp");
   json.set("lastUpdate/.sv", "timestamp");
+  json.set("fire", fireDetected);
   String jsonStr;
   json.toString(jsonStr);
   database.update(fbPushClient, MY_PATH, object_t(jsonStr), firebaseCallback, "update");
@@ -235,6 +250,7 @@ void loop() {
   }
 
   updateLastMovement();
+  updateFireDetected();
   updateCurrentTemp();
   updateHeating();
 
