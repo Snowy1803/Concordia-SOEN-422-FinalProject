@@ -1,7 +1,9 @@
 #include <WiFi.h>
-#include <Firebase.h>
+#include <FirebaseClient.h>
+#include <FirebaseJson.h>
 #include "DHT.h"
 
+#define HEATER_RELAY 12
 #define TEMP_SENSOR 17
 #define BUZZER 21
 #define MOVEMENT_SENSOR 13
@@ -14,7 +16,16 @@
 
 #define SERVER_TIMESTAMP "{\".sv\": \"timestamp\"}"
 
-Firebase fb(REFERENCE_URL);
+DefaultNetwork firebaseNetwork;
+NoAuth firebaseAuth;
+FirebaseApp firebaseApp;
+
+WiFiClient fbBasicClient, fbBasicPushClient;
+ESP_SSLClient fbSSLClient, fbSSLPushClient;
+using AsyncClient = AsyncClientClass;
+AsyncClient fbAClient(fbSSLClient, getNetwork(firebaseNetwork)), fbPushClient(fbSSLPushClient, getNetwork(firebaseNetwork));
+RealtimeDatabase database;
+
 DHT dht(TEMP_SENSOR, DHT11);
 
 /// The mode of the device
@@ -56,6 +67,10 @@ enum BuzzerSetting {
 } buzzer;
 /// The buzz to make at the current tick
 BuzzerSetting doBuzz = BUZZER_SILENT;
+/// If we are currently buzzing
+bool buzzing = false;
+
+void firebaseCallback(AsyncResult &aResult);
 
 void setup() {
   pinMode(MOVEMENT_SENSOR, INPUT);
@@ -73,17 +88,58 @@ void setup() {
   Serial.print("Connected to WiFi network with IP Address: ");
   Serial.println(WiFi.localIP());
   nextTempRead = millis() + 5000;
+
+  Serial.println("Connecting to Firebase app...");
+
+  fbSSLClient.setClient(&fbBasicClient);
+  fbSSLClient.setInsecure();
+  fbSSLClient.setBufferSizes(2048, 1024);
+  fbSSLClient.setDebugLevel(1);
+
+  fbSSLPushClient.setClient(&fbBasicPushClient);
+  fbSSLPushClient.setInsecure();
+  fbSSLPushClient.setBufferSizes(2048, 1024);
+  fbSSLPushClient.setDebugLevel(1);
+
+  initializeApp(fbAClient, firebaseApp, getAuth(firebaseAuth), firebaseCallback, "init");
+  firebaseApp.getApp<RealtimeDatabase>(database);
+  database.url(REFERENCE_URL);
+  database.get(fbAClient, MY_PATH, firebaseCallback, true, "stream");
 }
 
-/// Download settings (mode, setTemp) from firebase
-void downloadServerSettings() {
-  Mode newMode = static_cast<Mode>(fb.getInt(MY_PATH "mode"));
-  if (mode != newMode) {
-    mode = newMode;
-    doBuzz = BUZZER_MODE;
+void firebaseCallback(AsyncResult &result) {
+  if (result.available()) {
+    RealtimeDatabaseResult &RTDB = result.to<RealtimeDatabaseResult>();
+    if (RTDB.isStream()) {
+      if (RTDB.event() != "put" && RTDB.event() != "patch")
+        return;
+      Firebase.printf("Received event: %s / data: %s\n", RTDB.dataPath().c_str(), RTDB.to<const char *>());
+      if (RTDB.dataPath() == "/mode") {
+        mode = static_cast<Mode>(RTDB.to<int>());
+        doBuzz = BUZZER_MODE;
+      } else if (RTDB.dataPath() == "/setTemp") {
+        setTemp = RTDB.to<double>();
+      } else if (RTDB.dataPath() == "/buzzer") {
+        buzzer = static_cast<BuzzerSetting>(RTDB.to<int>());
+      } else if (RTDB.dataPath() == "/") {
+        // full update, parse json
+        FirebaseJson json;
+        json.setJsonData(RTDB.to<const char *>());
+        FirebaseJsonData jsonData;
+        if (json.get(jsonData, "mode")) {
+          mode = static_cast<Mode>(jsonData.intValue);
+          doBuzz = BUZZER_MODE;
+        }
+        if (json.get(jsonData, "setTemp")) {
+          setTemp = jsonData.doubleValue;
+        }
+        if (json.get(jsonData, "buzzer")) {
+          buzzer = static_cast<BuzzerSetting>(jsonData.intValue);
+        }
+      }
+    }
   }
-  setTemp = fb.getFloat(MY_PATH "setTemp");
-  buzzer = static_cast<BuzzerSetting>(fb.getInt(MY_PATH "buzzer"));
+
 }
 
 /// Update `lastMovement` if a movement is detected
@@ -140,31 +196,42 @@ void printState() {
   Serial.println(String("Temp: ") + currentTemp + "; target: " + setTemp);
   Serial.println(String("Heating: ") + heating);
   Serial.println(String("Movement: ") + lastMovement + (pushMovement ? " PUSH" : ""));
+  Serial.println(String("Buzzer: ") + buzzer);
 }
 
 /// Upload the state of the device to firebase
 void uploadState() {
-  fb.setBool(MY_PATH "heating", heating);
+  FirebaseJson json;
+  json.set("heating", heating);
   if (!isnan(currentTemp))
-    fb.setFloat(MY_PATH "currentTemp", currentTemp);
+    json.set("currentTemp", currentTemp);
   if (pushMovement)
-    fb.setJson(MY_PATH "lastMovement", SERVER_TIMESTAMP);
-  fb.setJson(MY_PATH "lastUpdate", SERVER_TIMESTAMP);
+    json.set("lastMovement/.sv", "timestamp");
+  json.set("lastUpdate/.sv", "timestamp");
+  String jsonStr;
+  json.toString(jsonStr);
+  database.update(fbPushClient, MY_PATH, object_t(jsonStr), firebaseCallback, "update");
   lastUpdate = tick;
   pushMovement = false;
 }
 
 void loop() {
+  firebaseApp.loop();
+  database.loop();
   /// The number of milliseconds since the start, of when the tick started.
   /// Nonzero. May overflow.
-  tick = millis();
+  unsigned long currentTime = millis();
+  bool tickNow = currentTime - tick >= 500;
+  if (!tickNow)
+    return;
+  tick = currentTime;
   if (tick == 0) tick = 1;
   bool serverUpdateNow = tick - lastUpdate > 15000;
 
-  if (serverUpdateNow) {
-    Serial.print("Server Update!");
-    downloadServerSettings();
-    Serial.println(" OK");
+  if (buzzing) {
+    noTone(BUZZER);
+    doBuzz = BUZZER_SILENT;
+    buzzing = false;
   }
 
   updateLastMovement();
@@ -173,17 +240,13 @@ void loop() {
 
   if (serverUpdateNow) {
     printState();
+    Serial.print("Server Update!");
     uploadState();
+    Serial.println(" OK");
   }
 
   if (doBuzz >= buzzer && buzzer) {
     tone(BUZZER, 118, 90);
-  }
-
-  delay(100);
-
-  if (doBuzz >= buzzer && buzzer) {
-    noTone(BUZZER);
-    doBuzz = BUZZER_SILENT;
+    buzzing = true;
   }
 }
